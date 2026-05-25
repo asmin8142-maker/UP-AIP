@@ -1,0 +1,13 @@
+[
+    {
+        "type": "deposit",
+        "amount": 1000.0,
+        "date": "2026-05-16 11:22:01"
+    },
+    {
+        "type": "transfer_out",
+        "amount": 200.0,
+        "date": "2026-05-16 11:25:45",
+        "to_user": "fefe"
+    }
+]

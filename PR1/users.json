@@ -1,0 +1,26 @@
+{
+    "alice": {
+        "password_hash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "balance": 0.0,
+        "blocked": true,
+        "failed_attempts": 3
+    },
+    "yasmin": {
+        "password_hash": "bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a",
+        "balance": 800.0,
+        "blocked": false,
+        "failed_attempts": 0
+    },
+    "bob": {
+        "password_hash": "c81ce2684a7b8d8738cd9a978e5e1acc846eca4b92686420bc1e641d287c4e80",
+        "balance": 0.0,
+        "blocked": false,
+        "failed_attempts": 0
+    },
+    "fefe": {
+        "password_hash": "472bbe83616e93d3c09a79103ae47d8f71e3d35a966d6e8b22f743218d04171d",
+        "balance": 200.0,
+        "blocked": false,
+        "failed_attempts": 0
+    }
+}
