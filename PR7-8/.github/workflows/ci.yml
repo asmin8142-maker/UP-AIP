@@ -10,6 +10,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./Lab_OOP_Testing_CICD
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -28,6 +32,3 @@ jobs:
       run: |
         coverage run -m pytest tests/ -v
         coverage report -m
-
-    - name: Generate HTML report
-      run: pytest --html=report.html --self-contained-html
