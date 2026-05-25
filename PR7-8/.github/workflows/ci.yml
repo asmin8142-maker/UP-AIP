@@ -32,3 +32,6 @@ jobs:
       run: |
         coverage run -m pytest tests/ -v
         coverage report -m
+
+    - name: Generate HTML report
+      run: pytest --html=report.html --self-contained-html tests/
