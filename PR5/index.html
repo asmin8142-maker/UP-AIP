@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teachable Machine Image Classifier</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f9f9f9;
+    }
+    #label-container {
+      margin-top: 25px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+    }
+    #uploaded-image {
+      margin-top: 20px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      max-width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Нейросеть: Распознавание Объектов</h1>
+  
+  <input type="file" accept="image/*" onchange="loadImage(event)">
+  <br>
+  
+  <img id="uploaded-image" src="" alt="[Здесь появится выбранное изображение]" style="display: block; margin: 20px auto;">
+  
+  <div id="label-container">Загрузка модели...</div>
+
+  <script>
+    const URL = "https://teachablemachine.withgoogle.com/models/OZDhhchfj/";
+    
+    let model, maxPredictions;
+
+    async function init() {
+      try {
+        model = await tmImage.load(URL + "model.json", URL + "metadata.json");
+        maxPredictions = model.getTotalClasses();
+        document.getElementById("label-container").innerHTML = "Модель успешно загружена! Выберите фото.";
+      } catch (e) {
+        document.getElementById("label-container").innerHTML = "Ошибка подключения к модели.";
+      }
+    }
+
+    async function predict(imageElement) {
+      const prediction = await model.predict(imageElement);
+      const labelContainer = document.getElementById("label-container");
+      labelContainer.innerHTML = "";
+      
+      prediction.forEach(p => {
+        const result = `${p.className}: ${(p.probability * 100).toFixed(2)}%`;
+        labelContainer.innerHTML += `<div style="margin-top: 5px;">${result}</div>`;
+      });
+    }
+
+    function loadImage(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      
+      // Используем FileReader вместо URL.createObjectURL - это работает стабильнее в браузерах локально
+      reader.onload = function(e) {
+        const img = document.getElementById("uploaded-image");
+        img.src = e.target.result;
+        
+        // Как только картинка полностью загрузилась в память - запускаем анализ
+        img.onload = async () => {
+          await predict(img);
+        };
+      };
+      
+      reader.readAsDataURL(file);
+    }
+
+    init();
+  </script>
+</body>
+</html>
