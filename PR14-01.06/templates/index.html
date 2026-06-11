@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ app_name }}
+{% endblock %}
+
+{% block content %}
+
+<h1>Учёт расходов</h1>
+
+<div class="form-card">
+
+    <h2>Добавить расход</h2>
+
+    <form method="POST">
+
+        <div class="form-group">
+            <label>Дата</label>
+
+            <input
+                type="date"
+                name="date"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label>Категория</label>
+
+            <select name="category">
+
+                <option>Продукты</option>
+
+                <option>Транспорт</option>
+
+                <option>Развлечения</option>
+
+                <option>Одежда</option>
+
+                <option>Коммунальные услуги</option>
+
+                <option>Другое</option>
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Сумма (₸)</label>
+
+            <input
+                type="number"
+                step="0.01"
+                name="amount"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label>Описание</label>
+
+            <textarea
+                name="description"
+                rows="3"></textarea>
+        </div>
+
+        <button
+            class="btn btn-primary"
+            type="submit">
+
+            Добавить расход
+
+        </button>
+
+    </form>
+
+</div>
+
+<h2>История расходов</h2>
+
+{% if items %}
+
+    {% for item in items %}
+
+    <div class="item-card">
+
+        <div style="flex:1">
+
+            <div class="item-title">
+
+                {{ item.category }}
+
+                —
+
+                {{ item.amount }} ₸
+
+            </div>
+
+            <div class="item-meta">
+
+                Дата: {{ item.date }}
+
+            </div>
+
+            {% if item.description %}
+
+            <div class="item-meta">
+
+                {{ item.description }}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        <a
+            href="/delete/{{ item.id }}"
+            class="btn btn-danger btn-sm">
+
+            Удалить
+
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+<p class="item-meta">
+
+Расходов пока нет.
+
+</p>
+
+{% endif %}
+
+{% endblock %}

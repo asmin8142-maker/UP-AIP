@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Статистика
+{% endblock %}
+
+{% block content %}
+
+<h1>Статистика расходов</h1>
+
+<table class="stats-table">
+    <thead>
+        <tr>
+            <th>Показатель</th>
+            <th>Значение</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Количество расходов</td>
+            <td>{{ data.total_records }}</td>
+        </tr>
+
+        <tr>
+            <td>Общая сумма</td>
+            <td>{{ data.total_amount }} ₸</td>
+        </tr>
+
+        <tr>
+            <td>Средний расход</td>
+            <td>{{ data.avg_amount }} ₸</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Расходы по категориям</h2>
+
+<table class="stats-table">
+    <thead>
+        <tr>
+            <th>Категория</th>
+            <th>Количество</th>
+            <th>Сумма</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in data.by_category %}
+        <tr>
+            <td>{{ row.category }}</td>
+            <td>{{ row.cnt }}</td>
+            <td>{{ row.total }} ₸</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

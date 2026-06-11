@@ -1,0 +1,133 @@
+:root{
+    --primary:#1e40af;
+    --accent:#3b82f6;
+    --bg:#eff6ff;
+    --white:#ffffff;
+    --danger:#dc2626;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+}
+
+.navbar{
+    background:var(--primary);
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.brand{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    gap:20px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.form-card,
+.item-card,
+.confirm-box{
+    background:white;
+    padding:20px;
+    margin:15px 0;
+    border-radius:10px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    padding:10px;
+}
+
+.btn{
+    padding:10px 15px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.btn-primary{
+    background:var(--accent);
+    color:white;
+}
+
+.btn-danger{
+    background:var(--danger);
+    color:white;
+}
+
+.btn-secondary{
+    background:lightgray;
+    color:black;
+}
+
+.stats-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+.stats-table th,
+.stats-table td{
+    border:1px solid #ccc;
+    padding:10px;
+}
+
+.stats-table th{
+    background:var(--primary);
+    color:white;
+}
+
+.flash{
+    padding:10px;
+    margin:10px;
+    border-radius:5px;
+}
+
+.flash-success{
+    background:#dcfce7;
+}
+
+.flash-error{
+    background:#fee2e2;
+}
+
+.flash-info{
+    background:#dbeafe;
+}
+
+.footer{
+    text-align:center;
+    margin-top:40px;
+    padding:20px;
+}

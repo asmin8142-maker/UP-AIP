@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+XSS Demo
+{% endblock %}
+
+{% block content %}
+
+<h1>Демонстрация XSS-защиты</h1>
+
+<h2>Небезопасный вывод</h2>
+
+<div class="form-card">
+
+    {{ unsafe|safe }}
+
+</div>
+
+<h2>Безопасный вывод</h2>
+
+<div class="form-card">
+
+    {{ safe_escaped }}
+
+</div>
+
+{% endblock %}
